@@ -1,13 +1,15 @@
 require("../misc/main")
-import { Client } from "discord.js";
 import secrets from "../secrets";
+import CommandConfigurator from "./command_configurator";
+import discordClient from "./discord_client";
 import BotStartedListener from "./listeners/bot_started_listener";
+import InteractionCreatedListener from "./listeners/interaction_created_listener";
 
 console.log("Bot is starting...");
 
-const client = new Client({
-    intents: []
-});
+new BotStartedListener().configure(discordClient)
+new InteractionCreatedListener().configure(discordClient)
 
-new BotStartedListener().configure(client)
-client.login(secrets.discordToken)
+new CommandConfigurator().register_commands()
+
+discordClient.login(secrets.discordToken)
