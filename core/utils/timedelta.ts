@@ -26,7 +26,7 @@ Date.prototype.addDelta = function (timedelta: Timedelta): Date {
   this.setSeconds(this.getSeconds() + timedelta.second);
   this.setMinutes(this.getMinutes() + timedelta.minute);
   this.setHours(this.getHours() + timedelta.hour);
-  this.setDate(this.getDay() + timedelta.day);
+  this.setDate(this.getDate() + timedelta.day);
   this.setMonth(this.getMonth() + timedelta.month);
   this.setFullYear(this.getFullYear() + timedelta.year);
   return this;
