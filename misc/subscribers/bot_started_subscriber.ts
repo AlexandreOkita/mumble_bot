@@ -4,16 +4,18 @@ import SubscriberI from "../../core/subscriber_interface";
 import LogBotStatusUsecase from "../usecases/log_bot_status_usecase";
 
 export default class BotStartedSubscriber implements SubscriberI {
-
   logBotStatusUsecase: LogBotStatusUsecase;
 
   constructor(logBotStatusUsecase: LogBotStatusUsecase) {
-    this.logBotStatusUsecase = logBotStatusUsecase
+    this.logBotStatusUsecase = logBotStatusUsecase;
   }
 
   configure() {
-    eventQueue.subscribe<BotStartedEvent>(BotStartedEvent.eventName, (event) => {
-      this.logBotStatusUsecase.run(event.eventData.clientName)
-    })
+    eventQueue.subscribe<BotStartedEvent>(
+      BotStartedEvent.eventName,
+      (event) => {
+        this.logBotStatusUsecase.run(event.eventData.clientName);
+      }
+    );
   }
 }

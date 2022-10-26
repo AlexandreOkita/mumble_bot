@@ -1,8 +1,14 @@
-require("../misc/main")
-require("../member/main")
+require("../misc/main");
+require("../member/main");
 import SayHiScheduledEvent from "../misc/scheduled_events/say_hi_scheduled_event";
 import secrets from "../secrets";
-import { botStartedListener, commandConfigurator, guildMemberAddedListener, interactionCreatedListener, scheduler } from "./app_config";
+import {
+  botStartedListener,
+  commandConfigurator,
+  guildMemberAddedListener,
+  interactionCreatedListener,
+  scheduler,
+} from "./app_config";
 import discordClient from "./discord_client";
 
 console.log("Bot is starting...");

@@ -4,7 +4,6 @@ import SubscriberI from "../../core/subscriber_interface";
 import NewMemberUsecase from "../usecase/new_member_usecase";
 
 export default class GuildMemberAddedSubscriber implements SubscriberI {
-
   newMemberUsecase: NewMemberUsecase;
 
   constructor(newMemberUsecase: NewMemberUsecase) {
@@ -12,8 +11,11 @@ export default class GuildMemberAddedSubscriber implements SubscriberI {
   }
 
   configure() {
-    eventQueue.subscribe<MemberAddedEvent>(MemberAddedEvent.eventName, (event) => {
-      this.newMemberUsecase.run(event.eventData.member);
-    })
+    eventQueue.subscribe<MemberAddedEvent>(
+      MemberAddedEvent.eventName,
+      (event) => {
+        this.newMemberUsecase.run(event.eventData.member);
+      }
+    );
   }
 }

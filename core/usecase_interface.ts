@@ -1,3 +1,3 @@
 export default interface UsecaseI<T> {
-  run(dto: T): void
+  run(dto: T): void;
 }

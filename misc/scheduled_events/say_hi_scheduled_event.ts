@@ -8,5 +8,4 @@ export default class SayHiScheduledEvent implements ScheduledEventI {
   run(): void {
     console.log("Hi!");
   }
-
 }

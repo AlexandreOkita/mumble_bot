@@ -19,7 +19,7 @@ export default class Timedelta {
 declare global {
   export interface Date {
     addDelta(timedelta: Timedelta): Date;
-  }  
+  }
 }
 
 Date.prototype.addDelta = function (timedelta: Timedelta): Date {
@@ -30,4 +30,4 @@ Date.prototype.addDelta = function (timedelta: Timedelta): Date {
   this.setMonth(this.getMonth() + timedelta.month);
   this.setFullYear(this.getFullYear() + timedelta.year);
   return this;
-}
+};

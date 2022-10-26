@@ -4,14 +4,16 @@ import SubscriberI from "../../core/subscriber_interface";
 import commandList from "../commands/command_list";
 
 export default class InteractionCreatedSubscriber implements SubscriberI {
-
   configure() {
-    eventQueue.subscribe<InteractionCreatedEvent>(InteractionCreatedEvent.eventName, (event) => {
-      commandList.forEach(command => {
-        if (event.eventData.interaction.commandName === command.data.name) {
-          command.run(event.eventData.interaction);
-        }
-      })
-    })
+    eventQueue.subscribe<InteractionCreatedEvent>(
+      InteractionCreatedEvent.eventName,
+      (event) => {
+        commandList.forEach((command) => {
+          if (event.eventData.interaction.commandName === command.data.name) {
+            command.run(event.eventData.interaction);
+          }
+        });
+      }
+    );
   }
 }

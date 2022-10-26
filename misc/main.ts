@@ -3,8 +3,8 @@ import InteractionCreatedSubscriber from "./subscribers/interaction_created_subs
 import LogBotStatusUsecase from "./usecases/log_bot_status_usecase";
 
 //usecases
-const logBotStatusUsecase = new LogBotStatusUsecase()
+const logBotStatusUsecase = new LogBotStatusUsecase();
 
 //subscribers
-new BotStartedSubscriber(logBotStatusUsecase).configure()
-new InteractionCreatedSubscriber().configure()
+new BotStartedSubscriber(logBotStatusUsecase).configure();
+new InteractionCreatedSubscriber().configure();

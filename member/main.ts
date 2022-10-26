@@ -1,1 +1,1 @@
-require("./member_config")
+require("./member_config");

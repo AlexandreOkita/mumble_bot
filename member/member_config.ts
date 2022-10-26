@@ -9,4 +9,6 @@ export const memberRepository = new MemberRepository();
 export const newMemberUsecase = new NewMemberUsecase(memberRepository);
 
 //Subscribers
-export const guildMemberAddedSubscriber = new GuildMemberAddedSubscriber(newMemberUsecase)
+export const guildMemberAddedSubscriber = new GuildMemberAddedSubscriber(
+  newMemberUsecase
+);

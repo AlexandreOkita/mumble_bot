@@ -1,3 +1,3 @@
 export default interface SubscriberI {
-  configure(): void
+  configure(): void;
 }
