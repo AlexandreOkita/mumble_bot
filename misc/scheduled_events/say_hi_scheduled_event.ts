@@ -1,10 +1,7 @@
 import ScheduledEventI from "../../core/scheduler/scheduled_events/scheduled_event_interface";
-import Timedelta from "../../core/utils/timedelta";
-import timedelta from "../../core/utils/timedelta";
 
 export default class SayHiScheduledEvent implements ScheduledEventI {
-  startDate: Date = new Date().addDelta(new Timedelta({ second: 5 }));
-  frequency: timedelta = new Timedelta({ minute: 1 });
+  cron = "10 * * * * *" //Every second = 10
   run(): void {
     console.log("Hi!");
   }

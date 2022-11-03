@@ -1,8 +1,9 @@
+import { CronExpression, parseExpression } from "cron-parser";
 import ScheduledEventI from "./scheduled_events/scheduled_event_interface";
 
 export default class Scheduler {
   tickRate: number;
-  private events: { event: ScheduledEventI; nextDate: Date }[] = [];
+  private events: { event: ScheduledEventI; cron: CronExpression }[] = [];
 
   constructor(tickRate = 60000) {
     this.tickRate = tickRate;
@@ -11,7 +12,7 @@ export default class Scheduler {
   register(event: ScheduledEventI) {
     this.events.push({
       event: event,
-      nextDate: event.startDate,
+      cron: parseExpression(event.cron)
     });
   }
 
@@ -19,10 +20,7 @@ export default class Scheduler {
     setInterval(() => {
       const now = new Date();
       this.events.forEach((scheduledEvent) => {
-        if (now > scheduledEvent.nextDate) {
-          scheduledEvent.nextDate = now.addDelta(
-            scheduledEvent.event.frequency
-          );
+        if (now > scheduledEvent.cron.next().toDate()) {
           scheduledEvent.event.run();
         }
       });

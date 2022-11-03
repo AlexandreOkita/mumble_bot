@@ -1,7 +1,5 @@
 import DiscordMessenger from "../../app/discord_messenger";
 import ScheduledEventI from "../../core/scheduler/scheduled_events/scheduled_event_interface";
-import Timedelta from "../../core/utils/timedelta";
-import timedelta from "../../core/utils/timedelta";
 import GarbageRepository from "../repositories/garbage_repository";
 
 export default class NotifyResponsibleScheduledEvent
@@ -18,8 +16,7 @@ export default class NotifyResponsibleScheduledEvent
     this.garbageRepository = garbageRepository;
   }
 
-  startDate: Date = new Date();
-  frequency: timedelta = new Timedelta({ day: 1 });
+  cron = "0 9 * * *";
   run(): void {
     this.sendGarbageResponsibleMessage();
   }
