@@ -1,5 +1,5 @@
 import { GuildMember } from "discord.js";
-import { discordMessenger } from "../../app/app_config";
+import { discordMessenger } from "../../core/core_config";
 import UsecaseI from "../../core/usecase_interface";
 import MemberRepository from "../repository/member_repository";
 

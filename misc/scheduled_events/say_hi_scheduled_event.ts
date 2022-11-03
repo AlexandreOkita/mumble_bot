@@ -3,8 +3,8 @@ import Timedelta from "../../core/utils/timedelta";
 import timedelta from "../../core/utils/timedelta";
 
 export default class SayHiScheduledEvent implements ScheduledEventI {
-  startDate: Date = new Date().addDelta(new Timedelta(5));
-  frequency: timedelta = new Timedelta(0, 1);
+  startDate: Date = new Date().addDelta(new Timedelta({ second: 5 }));
+  frequency: timedelta = new Timedelta({ minute: 1 });
   run(): void {
     console.log("Hi!");
   }

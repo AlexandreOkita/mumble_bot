@@ -1,8 +1,15 @@
 import { GuildMember } from "discord.js";
-import usersTable from "../../core/database/users_table";
+import UsersTable from "../../core/database/users_table";
 
 export default class MemberRepository {
+
+  usersTable: UsersTable
+
+  constructor(usersTable: UsersTable) {
+    this.usersTable = usersTable;
+  }
+
   addMember(member: GuildMember) {
-    usersTable.add(member.displayName, member.user.username);
+    this.usersTable.add(member.displayName, member.user.username);
   }
 }

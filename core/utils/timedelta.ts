@@ -6,7 +6,14 @@ export default class Timedelta {
   month: number;
   year: number;
 
-  constructor(second = 0, minute = 0, hour = 0, day = 0, month = 0, year = 0) {
+  constructor({
+    second = 0,
+    minute = 0,
+    hour = 0,
+    day = 0,
+    month = 0,
+    year = 0,
+  }) {
     this.second = second;
     this.minute = minute;
     this.hour = hour;
