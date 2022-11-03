@@ -12,6 +12,10 @@ export default class GarbageRepository {
     this.usersTable = usersTable;
   }
 
+  async addGarbageEvent(responsible: User) {
+    await this.garbageDaysTable.add(true, responsible.id);
+  }
+
   async getNextResponsible(): Promise<User> {
     const users = await this.usersTable.getAllUsers();
     const recentGarbageDays = await this.garbageDaysTable.getMostRecentDays();

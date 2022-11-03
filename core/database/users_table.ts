@@ -9,17 +9,16 @@ export type User = {
   discordUsername: string;
   id: string;
   createdDt: Date;
+  discordId: string;
 };
 
 export default class UsersTable {
-  add(name: string, discordUsername: string) {
-    supabase
-      .from(TABLE_NAME)
-      .insert({
-        name: name,
-        discord_username: discordUsername,
-      })
-      .then((value) => console.log(value));
+  async add(name: string, discordUsername: string, discordId: string) {
+    await supabase.from(TABLE_NAME).insert({
+      name: name,
+      discord_username: discordUsername,
+      discord_id: discordId,
+    });
   }
 
   async getAllUsers(): Promise<User[]> {
@@ -62,6 +61,7 @@ export default class UsersTable {
       createdDt: data.created_dt,
       name: data.name,
       discordUsername: data.discord_username,
+      discordId: data.discord_id,
     };
   }
 }

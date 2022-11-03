@@ -8,14 +8,11 @@ export type GarbageDay = {
 };
 
 export default class GarbageDaysTable {
-  add(hasCompleted: boolean, userId: string) {
-    supabase
-      .from("t_garbage_days")
-      .insert({
-        has_completed: hasCompleted,
-        user_id: userId,
-      })
-      .then((value) => console.log(value));
+  async add(hasCompleted: boolean, userId: string) {
+    await supabase.from("t_garbage_days").insert({
+      has_completed: hasCompleted,
+      user_id: userId,
+    });
   }
 
   async getMostRecentDays(): Promise<GarbageDay[]> {
@@ -25,7 +22,7 @@ export default class GarbageDaysTable {
         return this.mapData(value);
       });
     }
-    throw Error("Error to get garbage most recent days")
+    throw Error("Error to get garbage most recent days");
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

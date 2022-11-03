@@ -11,7 +11,7 @@ export default class BotStartedListener implements ListenerInterface {
         return;
       }
 
-      eventQueue.publish(new BotStartedEvent(client.user.username));
+      eventQueue.publish(new BotStartedEvent(client));
     });
   }
 }

@@ -10,6 +10,6 @@ export default class MemberRepository {
   }
 
   addMember(member: GuildMember) {
-    this.usersTable.add(member.displayName, member.user.username);
+    this.usersTable.add(member.displayName, member.user.username, member.user.id);
   }
 }
