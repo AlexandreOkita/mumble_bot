@@ -20,7 +20,7 @@ export default class RegisterAllGuildMembersUsecase
     if (guild) {
       const members = await guild.members.fetch();
       members.forEach(async (member) => {
-        this.memberRepository.addMember(member);
+        if (!member.user.bot) this.memberRepository.addMember(member);
       });
     }
   }

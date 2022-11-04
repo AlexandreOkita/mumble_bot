@@ -22,6 +22,7 @@ export default class GarbageRepository {
     if (recentGarbageDays.length == users.length) {
       return this.getOlderUserFromRecentGarbageDays(recentGarbageDays, users);
     }
+    console.log("aqui")
     return this.filterAndGetNoGarbageDayUser(users, recentGarbageDays);
   }
 
@@ -30,7 +31,7 @@ export default class GarbageRepository {
     recentGarbageDays: GarbageDay[]
   ) {
     const noDayUsers = users.filter((user) => {
-      !recentGarbageDays
+      return !recentGarbageDays
         .map((val) => {
           return val.userId;
         })

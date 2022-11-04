@@ -16,12 +16,8 @@ export default class NotifyResponsibleScheduledEvent
     this.garbageRepository = garbageRepository;
   }
 
-  cron = "0 0 9 * * *"; //Every 9:00
-  run(): void {
-    this.sendGarbageResponsibleMessage();
-  }
-
-  private async sendGarbageResponsibleMessage() {
+  cron = "0 0 7 * * *"; //Every 7:00
+  async run() {
     const nextResponsible = await this.garbageRepository.getNextResponsible();
     this.garbageRepository.addGarbageEvent(nextResponsible);
     this.discordMessenger.send(

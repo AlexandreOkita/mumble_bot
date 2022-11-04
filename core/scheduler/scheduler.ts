@@ -1,9 +1,12 @@
-import { CronExpression, parseExpression } from "cron-parser";
+import { CronJob } from "cron";
 import ScheduledEventI from "./scheduled_events/scheduled_event_interface";
 
 export default class Scheduler {
   tickRate: number;
-  private events: { event: ScheduledEventI; cron: CronExpression }[] = [];
+  private events: {
+    event: ScheduledEventI;
+    job: CronJob;
+  }[] = [];
 
   constructor(tickRate = 60000) {
     this.tickRate = tickRate;
@@ -12,18 +15,13 @@ export default class Scheduler {
   register(event: ScheduledEventI) {
     this.events.push({
       event: event,
-      cron: parseExpression(event.cron)
+      job: new CronJob(event.cron, () => event.run(), null, false, "America/Sao_Paulo"),
     });
   }
 
   start() {
-    setInterval(() => {
-      const now = new Date();
-      this.events.forEach((scheduledEvent) => {
-        if (now > scheduledEvent.cron.next().toDate()) {
-          scheduledEvent.event.run();
-        }
-      });
-    }, this.tickRate);
+    this.events.forEach((event) => {
+      event.job.start();
+    });
   }
 }
