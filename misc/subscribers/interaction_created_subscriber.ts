@@ -1,4 +1,4 @@
-import InteractionCreatedEvent from "../../app/discord_events/interaction_created_event";
+import InteractionCreatedEvent from "../../discord/discord_events/interaction_created_event";
 import eventQueue from "../../core/event_queue/event_queue";
 import SubscriberI from "../../core/subscriber_interface";
 import commandList from "../commands/command_list";

@@ -1,4 +1,4 @@
-import MemberAddedEvent from "../../app/discord_events/member_added_event";
+import MemberAddedEvent from "../../discord/discord_events/member_added_event";
 import eventQueue from "../../core/event_queue/event_queue";
 import SubscriberI from "../../core/subscriber_interface";
 import NewMemberUsecase from "../usecase/new_member_usecase";
