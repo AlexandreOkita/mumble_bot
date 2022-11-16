@@ -1,5 +1,6 @@
 import GarbageDaysTable, {
   GarbageDay,
+  GarbageDayUser,
 } from "../../core/database/garbage_days_table";
 import UsersTable, { User } from "../../core/database/users_table";
 
@@ -12,8 +13,16 @@ export default class GarbageRepository {
     this.usersTable = usersTable;
   }
 
-  async addGarbageEvent(responsible: User) {
-    await this.garbageDaysTable.add(true, responsible.id);
+  async addGarbageEvent(responsible: User): Promise<string> {
+    return await this.garbageDaysTable.add(true, responsible.id);
+  }
+
+  async uncompleteLastDay(garbageDayId: string) {
+    this.garbageDaysTable.updateLastUserDay(garbageDayId, false);
+  }
+
+  async getGarbageDayUser(id: string): Promise<GarbageDayUser> {
+    return this.garbageDaysTable.getGarbageDayFromId(id);
   }
 
   async getNextResponsible(): Promise<User> {
@@ -22,7 +31,6 @@ export default class GarbageRepository {
     if (recentGarbageDays.length == users.length) {
       return this.getOlderUserFromRecentGarbageDays(recentGarbageDays, users);
     }
-    console.log("aqui")
     return this.filterAndGetNoGarbageDayUser(users, recentGarbageDays);
   }
 

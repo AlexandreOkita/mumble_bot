@@ -10,7 +10,7 @@ export default class DiscordButton {
   }
 }
 
-export declare enum DiscordButtonStyle {
+export enum DiscordButtonStyle {
   Primary = 1,
   Secondary = 2,
   Success = 3,
