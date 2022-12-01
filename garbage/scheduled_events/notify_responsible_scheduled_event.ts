@@ -25,7 +25,7 @@ export default class NotifyResponsibleScheduledEvent
     this.messageParser = messageParser;
   }
 
-  cron = "00 45 09 * * *"; //Every 7:00
+  cron = "00 00 09 * * *"; //Every 9:00
   async run() {
     const nextResponsible = await this.garbageRepository.getNextResponsible();
     const garbageDayId = await this.garbageRepository.addGarbageEvent(
