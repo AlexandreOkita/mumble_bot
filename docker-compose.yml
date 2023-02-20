@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  dev-container-rastreador_sangue:
+    build: .
+    container_name: dev-container-mumble-bot
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/home/app
