@@ -7,4 +7,3 @@ const logBotStatusUsecase = new LogBotStatusUsecase();
 
 //subscribers
 new BotStartedSubscriber(logBotStatusUsecase).configure();
-new InteractionCreatedSubscriber().configure();

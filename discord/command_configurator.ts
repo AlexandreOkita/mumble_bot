@@ -1,7 +1,11 @@
 import { REST, Routes } from "discord.js";
 import CommandI from "../core/command_interface";
+import eventQueue from "../core/event_queue/event_queue";
 import commandList from "../misc/commands/command_list";
 import secrets from "../secrets";
+import { tasksCommandList } from "../tasks/tasks_config";
+import InteractionCreatedEvent from "../discord/discord_events/interaction_created_event";
+
 
 export default class CommandConfigurator {
   register_commands() {
@@ -23,6 +27,8 @@ export default class CommandConfigurator {
           { body: commands }
         );
 
+        this.configure_commands_subscribers()
+
         console.log(`Successfully reloaded application (/) commands.`);
       } catch (error) {
         console.error(error);
@@ -30,7 +36,20 @@ export default class CommandConfigurator {
     })();
   }
 
+  private configure_commands_subscribers() {
+    eventQueue.subscribe<InteractionCreatedEvent>(
+      InteractionCreatedEvent.eventName,
+      (event) => {
+        this.gather_all_command_lists().forEach((command) => {
+          if (event.eventData.interaction.commandName === command.data.name) {
+            command.run(event.eventData.interaction);
+          }
+        });
+      }
+    );
+  }
+
   private gather_all_command_lists(): CommandI[] {
-    return commandList;
+    return commandList.concat(tasksCommandList);
   }
 }
