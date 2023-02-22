@@ -30,4 +30,13 @@ export default class TasksTable {
     throw Error("Nothing to delete");
   }
 
+  async update(name: string): Promise<void> {
+    const data = await supabase
+      .from("t_tasks")
+      .update({
+        last_execution: Date.now()
+      })
+      .eq("name", name);
+  }
+
 }

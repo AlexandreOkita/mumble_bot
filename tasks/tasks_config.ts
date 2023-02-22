@@ -12,4 +12,4 @@ export const tasksRepository = new TasksRepository(
 );
 
 //Commands
-export const tasksCommandList: CommandI[] = [new AddTaskCommand(tasksRepository), new DeleteTaskCommand()];
+export const tasksCommandList: CommandI[] = [new AddTaskCommand(tasksRepository), new DeleteTaskCommand(tasksRepository)];

@@ -17,6 +17,18 @@ export default class TasksRepository {
   }
 
   async deleteTask(taskName: string) {
-    await this.tasksTable.delete(taskName)
+    try {
+      await this.tasksTable.delete(taskName)
+    } catch {
+      console.log("Error to delete data!")
+    }
+  }
+
+  async updateTask(taskName: string) {
+    try {
+      await this.tasksTable.update(taskName)
+    } catch {
+      console.log("Error to update data!")
+    }
   }
 }
