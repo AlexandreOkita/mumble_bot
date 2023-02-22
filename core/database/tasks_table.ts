@@ -1,11 +1,5 @@
+import Task from "../../tasks/models/task";
 import supabase from "./database_client";
-
-export type Task = {
-  id: string;
-  name: string;
-  createdDt: Date;
-  lastExecution: Date;
-};
 
 export default class TasksTable {
 
@@ -37,6 +31,16 @@ export default class TasksTable {
         last_execution: Date.now()
       })
       .eq("name", name);
+  }
+
+  async listAll(): Promise<Task[]> {
+    const data = await supabase.from("t_tasks").select()
+    if (data.data) {
+      return data.data.map(item => {
+        return new Task(item.id, item.name, item.last_execution);
+      });
+    }
+    throw Error("Nothing to list");
   }
 
 }

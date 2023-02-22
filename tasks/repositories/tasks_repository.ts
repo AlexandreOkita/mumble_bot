@@ -1,4 +1,5 @@
 import TasksTable from "../../core/database/tasks_table";
+import Task from "../models/task";
 
 export default class TasksRepository {
 
@@ -30,5 +31,9 @@ export default class TasksRepository {
     } catch {
       console.log("Error to update data!")
     }
+  }
+
+  async listTasks(): Promise<Task[]> {
+      return await this.tasksTable.listAll();
   }
 }
