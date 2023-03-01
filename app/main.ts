@@ -14,6 +14,8 @@ import {
   interactionCreatedListener,
   guildMemberAddedListener,
 } from "../discord/discord_config";
+import NotifyTasksScheduledEvent from "../tasks/scheduled_events/notify_tasks_scheduled_event";
+import { tasksRepository } from "../tasks/tasks_config";
 
 console.log("Bot is starting...");
 discordClient.login(secrets.discordToken);
@@ -24,8 +26,10 @@ const nextResponsible = new NotifyResponsibleScheduledEvent(
   garbageRepository,
   messageParser
 );
+
 scheduler.register(sayHi);
 scheduler.register(nextResponsible);
+scheduler.register(new NotifyTasksScheduledEvent(discordMessenger, tasksRepository, messageParser));
 scheduler.start();
 
 commandConfigurator.register_commands();

@@ -37,7 +37,11 @@ export default class TasksTable {
     const data = await supabase.from("t_tasks").select()
     if (data.data) {
       return data.data.map(item => {
-        return new Task(item.id, item.name, item.last_execution);
+        var lastExecution = item.last_execution;
+        if (lastExecution == null) {
+          lastExecution = Date.UTC(0, 0);
+        }
+        return new Task(item.id, item.name, lastExecution);
       });
     }
     throw Error("Nothing to list");
